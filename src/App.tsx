@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 
+import ErrorBoundary from './components/ErrorBoundary';
 import Portal from './components/Portal';
 
 import './App.css';
@@ -13,11 +14,13 @@ const App: React.FC = () => {
 
     return (
         <div className="App">
-            <div>
-                <button onClick={() => setIsPortalVisible(!IsPortalVisible)}>toggle portal</button>
-            </div>
+            <ErrorBoundary>
+                <div>
+                    <button onClick={() => setIsPortalVisible(!IsPortalVisible)}>toggle portal</button>
+                </div>
 
-            {IsPortalVisible ? <Portal {...{ handleWindowClose }} /> : null}
+                {IsPortalVisible ? <Portal {...{ handleWindowClose }} /> : null}
+            </ErrorBoundary>
         </div>
     );
 };
