@@ -13,15 +13,15 @@ const App: React.FC = () => {
     }, []);
 
     return (
-        <div className="App">
-            <ErrorBoundary>
+        <ErrorBoundary>
+            <div className="App">
                 <div>
                     <button onClick={() => setIsPortalVisible(!IsPortalVisible)}>toggle portal</button>
                 </div>
 
                 {IsPortalVisible ? <Portal {...{ handleWindowClose }} /> : null}
-            </ErrorBoundary>
-        </div>
+            </div>
+        </ErrorBoundary>
     );
 };
 
