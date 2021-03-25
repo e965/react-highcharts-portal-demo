@@ -1,21 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState, useCallback } from 'react';
+
+import Portal from './components/Portal';
+
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
+    const [IsPortalVisible, setIsPortalVisible] = useState<boolean>(false);
+
+    const handleWindowClose = useCallback(() => {
+        setIsPortalVisible(false);
+    }, []);
+
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
+            <div>
+                <button onClick={() => setIsPortalVisible(!IsPortalVisible)}>toggle portal</button>
+            </div>
+
+            {IsPortalVisible ? <Portal {...{ handleWindowClose }} /> : null}
         </div>
     );
-}
+};
 
 export default App;
