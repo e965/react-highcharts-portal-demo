@@ -11,7 +11,7 @@ type PropsType = {
 };
 
 class ErrorBoundary extends Component<PropsType, StateType> {
-    constructor(props) {
+    constructor(props: PropsType) {
         super(props);
         this.state = { HasError: false, ErrorText: '' };
     }
