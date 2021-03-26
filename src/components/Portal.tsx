@@ -1,13 +1,11 @@
 import { useRef, useState, useEffect } from 'react';
 import { createPortal, unmountComponentAtNode } from 'react-dom';
 
-import Chart from './Chart';
-
 type PropsType = {
     handleWindowClose: () => void;
 };
 
-const Portal: React.FC<PropsType> = ({ handleWindowClose }) => {
+const Portal: React.FC<PropsType> = ({ handleWindowClose, children }) => {
     const WindowRef = useRef<ReturnType<typeof window.open>>(null);
 
     const [IsWindowCreated, setIsWindowCreated] = useState<boolean>(false);
@@ -32,7 +30,7 @@ const Portal: React.FC<PropsType> = ({ handleWindowClose }) => {
         };
     }, [handleWindowClose]);
 
-    return IsWindowCreated && WindowRef.current !== null ? createPortal(<Chart />, WindowRef.current.document.body) : null;
+    return IsWindowCreated && WindowRef.current !== null ? createPortal(children, WindowRef.current.document.body) : null;
 };
 
 export default Portal;
